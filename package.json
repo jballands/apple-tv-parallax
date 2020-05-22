@@ -1,0 +1,28 @@
+{
+	"name": "apple-tv-parallax",
+	"version": "1.0.0",
+	"description": "Apple TV style buttons",
+	"main": "index.jsx",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Jon Ballands <jballands@gmail.com>",
+	"license": "MIT",
+	"dependencies": {
+		"d3-scale": "^3.2.1",
+		"react-measure": "^2.3.0",
+		"react-motion": "^0.5.2",
+		"styled-components": "^5.1.0"
+	},
+	"peerDependencies": {
+		"react": "^16.13.1"
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^2.34.0",
+		"eslint-config-airbnb-typescript": "^7.2.1",
+		"eslint-plugin-import": "^2.20.2",
+		"eslint-plugin-jsx-a11y": "^6.2.3",
+		"eslint-plugin-react": "^7.20.0",
+		"eslint-plugin-react-hooks": "^2.5.1"
+	}
+}
