@@ -16,5 +16,5 @@
 		"declaration": true,
 		"esModuleInterop": true
 	},
-	"exclude": ["node_modules", "lib", "old"]
+	"exclude": ["node_modules", "lib", "site"]
 }

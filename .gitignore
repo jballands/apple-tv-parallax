@@ -70,5 +70,7 @@ yarn-error.log
 
 # Now
 .now
-
 .vercel
+
+# Lib
+lib

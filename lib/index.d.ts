@@ -5,10 +5,12 @@ interface AppleTVIconProps {
     rotationAngleDegrees?: number;
     parallaxMultiplier?: number;
     hideShadow?: boolean;
+    noClickAnimation?: boolean;
     dropShadowSpread?: number;
     dropShadowDepth?: number;
+    borderRadius?: string;
     onClick?: () => void;
     [_: string]: any;
 }
-export default function ({ layers, onClick, shadowOpacity, rotationAngleDegrees, hideShadow, parallaxMultiplier, dropShadowSpread, dropShadowDepth, ...otherProps }: AppleTVIconProps): JSX.Element;
+export default function ({ layers, onClick, shadowOpacity, rotationAngleDegrees, hideShadow, noClickAnimation, parallaxMultiplier, dropShadowSpread, dropShadowDepth, borderRadius, ...otherProps }: AppleTVIconProps): JSX.Element;
 export {};

@@ -1,7 +1,7 @@
 {
 	"name": "apple-tv-parallax",
 	"version": "1.0.0",
-	"description": "Apple TV style buttons",
+	"description": "Apple TV style buttons for your app",
 	"main": "lib/index.js",
 	"scripts": {
 		"develop": "tsc --watch",

@@ -47,6 +47,7 @@ interface IconContainerProps {
 	readonly rx: number;
 	readonly ry: number;
 	readonly scale: number;
+	readonly borderRadius: string;
 }
 
 const IconContainer = styled.div.attrs(
@@ -60,7 +61,7 @@ const IconContainer = styled.div.attrs(
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	border-radius: 5px;
+	border-radius: ${({ borderRadius }) => borderRadius};
 	transform-style: preserve-3d;
 `;
 
@@ -68,6 +69,7 @@ interface ShineProps {
 	readonly sx: number;
 	readonly sy: number;
 	readonly sb: number;
+	readonly borderRadius: string;
 }
 
 const Shine = styled.div.attrs(({ sx, sy, sb }: ShineProps) => ({
@@ -84,13 +86,14 @@ const Shine = styled.div.attrs(({ sx, sy, sb }: ShineProps) => ({
 	left: 0;
 	right: 0;
 	bottom: 0;
-	border-radius: 5px;
+	border-radius: ${({ borderRadius }) => borderRadius};
 `;
 
 interface ShadeProps {
 	readonly hx: number;
 	readonly hy: number;
 	readonly hb: number;
+	readonly borderRadius: string;
 }
 
 const Shade = styled.div.attrs(({ hx, hy, hb }: ShadeProps) => ({
@@ -107,7 +110,7 @@ const Shade = styled.div.attrs(({ hx, hy, hb }: ShadeProps) => ({
 	left: 0;
 	right: 0;
 	bottom: 0;
-	border-radius: 5px;
+	border-radius: ${({ borderRadius }) => borderRadius};
 `;
 
 interface AppleTVIconProps {
@@ -116,8 +119,10 @@ interface AppleTVIconProps {
 	rotationAngleDegrees?: number;
 	parallaxMultiplier?: number;
 	hideShadow?: boolean;
+	noClickAnimation?: boolean;
 	dropShadowSpread?: number;
 	dropShadowDepth?: number;
+	borderRadius?: string;
 	onClick?: () => void;
 	[_: string]: any;
 }
@@ -128,9 +133,11 @@ export default function ({
 	shadowOpacity = 0.4,
 	rotationAngleDegrees = 15,
 	hideShadow = false,
+	noClickAnimation = false,
 	parallaxMultiplier = 0.03,
 	dropShadowSpread = 45,
 	dropShadowDepth = 45,
+	borderRadius = '5px',
 	...otherProps
 }: AppleTVIconProps) {
 	const rootRef = useRef<HTMLDivElement>(null);
@@ -310,7 +317,7 @@ export default function ({
 	const onMouseDown = () => {
 		setState({
 			...state,
-			isSelecting: true,
+			isSelecting: !noClickAnimation && true,
 		});
 	};
 
@@ -399,16 +406,17 @@ export default function ({
 
 	const renderLayers = ({ dx, dy }: PlainStyle) => {
 		return layers.map((layer, i) => {
+			const otherStyles = layer.props?.style ?? {};
+
 			const props = {
 				style: {
 					position: 'absolute',
 					top: 0,
 					left: 0,
-					width: '100%',
-					height: '100%',
 					transform: `translateX(${i * parallaxMultiplier * dx}px) translateY(${
 						i * parallaxMultiplier * dy
 					}px)`,
+					...otherStyles,
 				},
 				key: i,
 			};
@@ -449,6 +457,7 @@ export default function ({
 									scale={interpolated.scale}
 									rx={interpolated.rx}
 									ry={interpolated.ry}
+									borderRadius={borderRadius}
 									ref={measureRef}
 								>
 									{renderLayers(interpolated)}
@@ -456,11 +465,13 @@ export default function ({
 										sx={interpolated.sx}
 										sy={interpolated.sy}
 										sb={interpolated.sb}
+										borderRadius={borderRadius}
 									/>
 									<Shade
 										hx={interpolated.hx}
 										hy={interpolated.hy}
 										hb={interpolated.hb}
+										borderRadius={borderRadius}
 									/>
 								</IconContainer>
 							)}
